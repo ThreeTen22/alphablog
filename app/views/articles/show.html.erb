@@ -1,3 +1,9 @@
+<% flash.each do |name, msg| %>
+	<ul>
+		<li> <%= msg %> </li>
+	</ul>
+<% end %>
+
 <h1>Showing Selected Article</h1>
 
 <p>Title:</br>
@@ -5,3 +11,5 @@
 <p>Description:</br>
 <%= @article.description %>
 </p>
+
+<%= link_to "back to articles", articles_path %>
