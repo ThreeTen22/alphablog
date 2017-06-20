@@ -1,7 +1,22 @@
-class ArticlesController < ApplicationController
+class ArticlesController < ActionController::Base
   
   def new
     @article = Article.new
+  end
+
+
+  def edit
+    @article = Article.find(params[:format])
+  end
+
+  def update
+    @article = Article.find(params[:format])
+    if @article.update(article_params)
+      flash[:notice] = "Article was successfully updated"
+      redirect_to articles_path(@article)
+    else
+      render 'edit'
+    end
   end
 
   def create
@@ -9,6 +24,7 @@ class ArticlesController < ApplicationController
 
     if @article.save
       redirect_to articles_path(@article)
+      flash[:notice] = "Article was successfully created"
     else
       render 'new'
     end
